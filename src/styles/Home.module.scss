@@ -1,0 +1,141 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.subLogo {
+    font-size: 2rem;
+    margin-top: 0.7rem;
+}
+
+.links {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    gap: 3.75rem;
+
+    a {
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: white;
+    }
+
+    a:hover {
+        color: #c9c9c9;
+    }
+}
+
+.quemSomos {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .about {
+        width: 44rem;
+        height: fit-content;
+        margin-left: 15.625rem;
+    
+        .title {
+            font-size: 4rem;
+            margin-bottom: unset;
+        }
+        .subTitle {
+            margin-top: .5rem;
+            font-size: 2rem;
+        }
+    }
+    
+    .tecnologias {
+        margin-right: 15.625rem;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+.portfolio {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.swiper {
+    --swiper-navigation-color: #fff;
+    // --swiper-navigation-sides-offset: -1rem;
+    max-width: 70rem;
+
+    .swiperSlide {
+        display: flex;
+        
+    }
+
+    .itemPortfolio {
+        margin: 0 auto;
+        position: relative;
+        aspect-ratio: 16/9;        
+        width: 60rem;
+        border-radius: 1.25rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            object-fit: cover;
+        }
+
+        .info {
+            bottom: 0;
+            position: absolute;
+            width: 100%;
+            height: 21rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45.98%, #000000 83.6%);
+            align-items: end;
+            display: flex;
+
+            .infoContent {
+                display: flex;
+                width: 100%;
+                padding: 1rem;
+                height: 3.5rem;
+
+                p {
+                    display: block;
+                    font-size: 1.25rem;
+                    flex-grow: 1;
+                    color: #fff;
+                    margin: unset;
+                }
+    
+                .open {
+                    display: flex;
+                    gap: 0.5rem;
+                    justify-content: center;
+                    align-items: center;
+                    white-space: nowrap;
+                    border-radius: 0.6rem;
+                    width: fit-content;
+                    background-color: white;
+                    padding: 0.5rem;
+                    height: fit-content;
+                    color: black;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

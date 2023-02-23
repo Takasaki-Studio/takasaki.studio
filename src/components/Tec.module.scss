@@ -1,0 +1,22 @@
+.tech {
+    display: flex;
+    gap: 1rem;
+
+    img {
+        width: 3.125rem;
+    }
+
+    p {
+        margin: unset;
+        font-size: 2.5rem;
+    }
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    width: 3.125rem;
+    border-radius: 50%;
+}
