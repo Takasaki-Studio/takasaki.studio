@@ -18,11 +18,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TecFontsAwesome, {
   TecFontsAwesomeProps,
 } from "@/components/TecFontsAwesome";
-import { useCallback, useEffect, useState } from "react";
-import { SwiperContainerEl } from "@/declarations";
-
+import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import SwiperInstance from "swiper";
+import { useWindowHeight } from "@/hooks/size";
 
 const ITEMS = [
   {
@@ -108,44 +109,31 @@ const TECH_ELEMENTS = TECHS.map(({ type, ...tech }) =>
 );
 
 const TECH_SLIDES = TECH_ELEMENTS.map((tech) => (
-  <swiper-slide key={tech.key}>{tech}</swiper-slide>
+  <SwiperSlide key={tech.key}>{tech}</SwiperSlide>
 ));
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
+  const mainSwiperRef = useRef<SwiperRef>(null);
+  const height = useWindowHeight();
 
-  const swiperRef = useCallback((node: SwiperContainerEl) => {
-    if (node == null) return;
-
-    Object.assign(node, {
-      observer: true,
-      autoplay: {
-        delay: 1750,
-        disableOnInteraction: false,
-      },
-      spaceBetween: 50,
-      breakpoints: {
-        0: {
-          slidesPerView: 2,
-        },
-        480: {
-          slidesPerView: 3,
-        },
-        992: {
-          slidesPerView: 4,
-        },
-      },
-    });
-    node.initialize?.();
-  }, []);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const navigateTo = (index: number) => () => {
+    mainSwiperRef.current?.swiper.slideTo(index);
+  };
 
   return (
-    <>
-      <div className={styles.home}>
+    <Swiper
+      className={styles.mainSwiper}
+      slidesPerView={1}
+      direction="vertical"
+      mousewheel={{
+        thresholdTime: 300,
+      }}
+      style={{
+        height,
+      }}
+      ref={mainSwiperRef}
+    >
+      <SwiperSlide className={styles.home}>
         <Image
           className={styles.logo}
           src={Logo}
@@ -156,8 +144,12 @@ export default function Home() {
           A criação do universo só depende de uma ideia
         </p>
         <div className={styles.links}>
-          <a href="#quem-somos">Quem somos</a>
-          <a href="#portfolio">Portfólio</a>
+          <div className={styles.link} onClick={navigateTo(1)}>
+            Quem somos
+          </div>
+          <div className={styles.link} onClick={navigateTo(2)}>
+            Portfólio
+          </div>
           <a
             target="_blank"
             rel="noreferrer"
@@ -166,9 +158,9 @@ export default function Home() {
             Contate-nos
           </a>
         </div>
-      </div>
+      </SwiperSlide>
 
-      <div className={styles.quemSomos} id="quem-somos">
+      <SwiperSlide className={styles.quemSomos}>
         <div className={styles.about}>
           <h1 className={styles.title}>
             Aqui as suas ideias viram <span className="rgb">realidade</span>
@@ -180,64 +172,71 @@ export default function Home() {
           </p>
         </div>
 
-        {/* <div className={styles.tecnologias}> */}
-        {isClient && (
-          <swiper-container
-            ref={swiperRef}
-            class={styles.techSwiper}
-            init="false"
-          >
-            {TECH_SLIDES}
-          </swiper-container>
-        )}
-        <div className={styles.tecnologias}>{TECH_ELEMENTS}</div>
-      </div>
+        <Swiper
+          className={styles.techSwiper}
+          observer
+          autoplay={{
+            delay: 1750,
+            disableOnInteraction: false,
+          }}
+          spaceBetween={50}
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+            },
+            992: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {TECH_SLIDES}
+        </Swiper>
 
-      <div className={styles.portfolio} id="portfolio">
+        <div className={styles.tecnologias}>{TECH_ELEMENTS}</div>
+      </SwiperSlide>
+
+      <SwiperSlide className={styles.portfolio}>
         <h1 className={styles.title}>
           Nosso <span className="rgb">portfólio</span>
         </h1>
-        {isClient && (
-          <swiper-container
-            navigation="true"
-            slides-per-view="auto"
-            class={styles.swiper}
-          >
-            {ITEMS.map((item, index) => (
-              <swiper-slide class={styles.swiperSlide} key={index}>
-                <div className={styles.itemPortfolio}>
-                  <Image
-                    className={styles.portfolioImage}
-                    src={item.image}
-                    alt={item.description}
-                    fill
-                  />
-                  <Image
-                    className={styles.portfolioImageMobile}
-                    src={item.mobileImage}
-                    alt={item.description}
-                    fill
-                  />
-                  <div className={styles.info}>
-                    <div className={styles.infoContent}>
-                      <p>{item.description}</p>
-                      <a
-                        className={styles.open}
-                        target="_blank"
-                        rel="noreferrer"
-                        href={item.link}
-                      >
-                        Visualizar{" "}
-                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                      </a>
-                    </div>
+        <Swiper navigation slidesPerView="auto" className={styles.swiper}>
+          {ITEMS.map((item, index) => (
+            <SwiperSlide className={styles.swiperSlide} key={index}>
+              <div className={styles.itemPortfolio}>
+                <Image
+                  className={styles.portfolioImage}
+                  src={item.image}
+                  alt={item.description}
+                  fill
+                />
+                <Image
+                  className={styles.portfolioImageMobile}
+                  src={item.mobileImage}
+                  alt={item.description}
+                  fill
+                />
+                <div className={styles.info}>
+                  <div className={styles.infoContent}>
+                    <p>{item.description}</p>
+                    <a
+                      className={styles.open}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={item.link}
+                    >
+                      Visualizar{" "}
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </a>
                   </div>
                 </div>
-              </swiper-slide>
-            ))}
-          </swiper-container>
-        )}
-      </div>
-    </>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperSlide>
+    </Swiper>
   );
 }
