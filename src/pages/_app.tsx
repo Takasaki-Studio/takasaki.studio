@@ -12,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div className={roboto.className}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Takasaki Studio</title>
       </Head>
       <Component {...pageProps} />
     </div>
