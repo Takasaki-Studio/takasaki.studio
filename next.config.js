@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["i.imgur.com"],
   },
+  experimental: {
+    runtime: "edge"
+  }
 };
 
 module.exports = nextConfig;
