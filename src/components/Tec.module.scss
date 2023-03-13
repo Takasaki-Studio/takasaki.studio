@@ -1,22 +1,33 @@
+@import "@/styles/variables";
+
 .tech {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  font-size: 2.5rem;
+  white-space: nowrap;
 
-    img {
-        width: 3.125rem;
-    }
+  p {
+    margin: unset;
+  }
 
-    p {
-        margin: unset;
-        font-size: 2.5rem;
-    }
+  @media (max-width: $breakpoint-xl) {
+    font-size: 1.5rem;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.2rem;
+  }
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.7rem;
-    width: 3.125rem;
-    border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
 }
