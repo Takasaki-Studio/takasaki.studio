@@ -25,6 +25,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { useWindowHeight } from "@/hooks/size";
 
 import starStyles from "@/styles/stars.module.scss";
+import {cloudflareLoader} from "@/utils/cloudflare";
 
 const ITEMS = [
   {
@@ -216,12 +217,14 @@ export default function Home() {
                   className={styles.portfolioImage}
                   src={item.image}
                   alt={item.description}
+                  loader={cloudflareLoader}
                   fill
                 />
                 <Image
                   className={styles.portfolioImageMobile}
                   src={item.mobileImage}
                   alt={item.description}
+                  loader={cloudflareLoader}
                   fill
                 />
                 <div className={styles.info}>
