@@ -2,152 +2,247 @@ import Image from "next/image";
 import styles from "@/styles/Home.module.scss";
 import Logo from "@/assets/logo.svg";
 import Next from "@/assets/next.svg";
-import Tec from "@/components/Tec";
-import mta from "@/assets/portfolio/mta.png";
-import nico from "@/assets/portfolio/nico.png";
-import { faArrowUpRightFromSquare, faWrench, faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import Tec, { TecProps } from "@/components/Tec";
 import {
-    faReact,
-    faHtml5,
-    faDiscord,
-    faTelegram,
+  faArrowUpRightFromSquare,
+  faWrench,
+  faLightbulb,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faReact,
+  faHtml5,
+  faDiscord,
+  faTelegram,
 } from "@fortawesome/free-brands-svg-icons";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TecFontsAwesome, {
+  TecFontsAwesomeProps,
+} from "@/components/TecFontsAwesome";
+import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TecFontsAwesome from "@/components/TecFontsAwesome";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import { useWindowHeight } from "@/hooks/size";
+
+import starStyles from "@/styles/stars.module.scss";
 
 const ITEMS = [
-    {
-        description: "a",
-        image: nico,
-        link: "https://example.com",
-    },
-    {
-        description:
-            "MTA List é uma lista de servidores de Multi Theft Auto. Foi realizado o front-end e o back-end dessa aplicação, além de uma Dashboard.",
-        image: mta,
-        link: "https://example.com",
-    },
+  {
+    description:
+      "MTA List é uma lista de servidores de Multi Theft Auto. Foi realizado o front-end e o back-end dessa aplicação, além de uma Dashboard.",
+    image: "https://i.imgur.com/aTq2avE.png",
+    mobileImage: "https://i.imgur.com/MAEVAhy.png",
+    link: "https://mtalist.com",
+  },
+  {
+    description:
+      "Página de captura para campanha da empresa Sonic Telecom de Goiânia/GO. Foi realizada a criação da página completa.",
+    image: "https://i.imgur.com/V17J2RH.png",
+    mobileImage: "https://i.imgur.com/jRdz0Zs.png",
+    link: "https://web.archive.org/web/20230311032145/https://lp2.sonictelecom.com.br/",
+  },
 ] as const;
 
+enum TechType {
+  FontAwesome,
+  Image,
+}
+
+interface TechFA extends TecFontsAwesomeProps {
+  type: TechType.FontAwesome;
+}
+
+interface Tech extends TecProps {
+  type: TechType.Image;
+}
+
+const TECHS: (Tech | TechFA)[] = [
+  {
+    type: TechType.FontAwesome,
+    color: "#00CCF2",
+    title: "Website SPA",
+    icon: faReact,
+  },
+  {
+    type: TechType.FontAwesome,
+    color: "#E34F26",
+    title: "Website estático",
+    icon: faHtml5,
+  },
+  {
+    type: TechType.Image,
+    image: Next,
+    title: "Website dinâmico",
+  },
+  {
+    type: TechType.FontAwesome,
+    color: "#5865F2",
+    title: "Bots para Discord",
+    icon: faDiscord,
+  },
+  {
+    type: TechType.FontAwesome,
+    color: "#0088CC",
+    title: "Bots para Telegram",
+    icon: faTelegram,
+  },
+  {
+    type: TechType.FontAwesome,
+    color: "#CD3333",
+    title: "Manutenções",
+    icon: faWrench,
+  },
+  {
+    type: TechType.FontAwesome,
+    color: "#745CFF",
+    title: "E muito mais!",
+    icon: faLightbulb,
+    className: "rgb",
+  },
+];
+
+const TECH_ELEMENTS = TECHS.map(({ type, ...tech }) =>
+  type === TechType.FontAwesome ? (
+    <TecFontsAwesome key={tech.title} {...(tech as TecFontsAwesomeProps)} />
+  ) : (
+    <Tec key={tech.title} {...(tech as TecProps)} />
+  )
+);
+
+const TECH_SLIDES = TECH_ELEMENTS.map((tech) => (
+  <SwiperSlide key={tech.key}>{tech}</SwiperSlide>
+));
+
 export default function Home() {
-    return (
-        <>
-            <div className={styles.home}>
+  const mainSwiperRef = useRef<SwiperRef>(null);
+  const height = useWindowHeight();
+
+  const navigateTo = (index: number) => () => {
+    mainSwiperRef.current?.swiper.slideTo(index);
+  };
+
+  return (
+    <Swiper
+      className={styles.mainSwiper}
+      slidesPerView={1}
+      direction="vertical"
+      mousewheel={{
+        thresholdTime: 300,
+      }}
+      style={{
+        height,
+      }}
+      ref={mainSwiperRef}
+    >
+      <SwiperSlide className={styles.home}>
+        <div className={styles.stars}>
+          <div className={starStyles.starsAnimation}></div>
+          <div className={starStyles.stars2Animation}></div>
+          <div className={starStyles.stars3Animation}></div>
+        </div>
+        <Image
+          className={styles.logo}
+          src={Logo}
+          alt="Takasaki Studio"
+          draggable="false"
+        ></Image>
+        <p className={styles.subLogo}>
+          A criação do universo só depende de uma ideia
+        </p>
+        <div className={styles.links}>
+          <div className={styles.link} onClick={navigateTo(1)}>
+            Quem somos
+          </div>
+          <div className={styles.link} onClick={navigateTo(2)}>
+            Portfólio
+          </div>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://discord.gg/paPhRSpQkR"
+          >
+            Contate-nos
+          </a>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide className={styles.quemSomos}>
+        <div className={styles.about}>
+          <h1 className={styles.title}>
+            Aqui as suas ideias viram <span className="rgb">realidade</span>
+          </h1>
+          <p className={styles.subTitle}>
+            Na Takasaki Studio construímos soluções para tornar possível o seu
+            sonho, garantindo sempre a qualidade e um desenvolvimento
+            personalizado para as suas necessidades
+          </p>
+        </div>
+
+        <Swiper
+          className={styles.techSwiper}
+          observer
+          autoplay={{
+            delay: 1750,
+            disableOnInteraction: false,
+          }}
+          spaceBetween={50}
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+            },
+            992: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {TECH_SLIDES}
+        </Swiper>
+
+        <div className={styles.tecnologias}>{TECH_ELEMENTS}</div>
+      </SwiperSlide>
+
+      <SwiperSlide className={styles.portfolio}>
+        <h1 className={styles.title}>
+          Nosso <span className="rgb">portfólio</span>
+        </h1>
+        <Swiper navigation slidesPerView="auto" className={styles.swiper}>
+          {ITEMS.map((item, index) => (
+            <SwiperSlide className={styles.swiperSlide} key={index}>
+              <div className={styles.itemPortfolio}>
                 <Image
-                    src={Logo}
-                    alt="Takasaki Studio"
-                    draggable="false"
-                ></Image>
-                <p className={styles.subLogo}>
-                    A criação do universo só depende de uma ideia
-                </p>
-                <div className={styles.links}>
-                    <a href="#quem-somos">Quem somos</a>
-                    <a href="#portfolio">Portfólio</a>
+                  className={styles.portfolioImage}
+                  src={item.image}
+                  alt={item.description}
+                  fill
+                />
+                <Image
+                  className={styles.portfolioImageMobile}
+                  src={item.mobileImage}
+                  alt={item.description}
+                  fill
+                />
+                <div className={styles.info}>
+                  <div className={styles.infoContent}>
+                    <p>{item.description}</p>
                     <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://discord.gg/paPhRSpQkR"
+                      className={styles.open}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={item.link}
                     >
-                        Contate-nos
+                      Visualizar{" "}
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </a>
+                  </div>
                 </div>
-            </div>
-
-            <div className={styles.quemSomos} id="quem-somos">
-                <div className={styles.about}>
-                    <h1 className={styles.title}>
-                        Aqui as suas ideias viram{" "}
-                        <span className="rgb">realidade</span>
-                    </h1>
-                    <p className={styles.subTitle}>
-                        Na Takasaki Studio construímos soluções para tornar
-                        possível o seu sonho, garantindo sempre a qualidade e um
-                        desenvolvimento personalizado para as suas necessidades
-                    </p>
-                </div>
-
-                <div className={styles.tecnologias}>
-                    <TecFontsAwesome
-                        color="#00CCF2"
-                        title="Website SPA"
-                        icon={faReact}
-                    />
-                    <TecFontsAwesome
-                        color="#E34F26"
-                        title="Website estático"
-                        icon={faHtml5}
-                    />
-                    <Tec image={Next} title="Website dinâmico"></Tec>
-                    <TecFontsAwesome
-                        color="#5865F2"
-                        title="Bots para Discord"
-                        icon={faDiscord}
-                    />
-                    <TecFontsAwesome
-                        color="#0088CC"
-                        title="Bots para Telegram"
-                        icon={faTelegram}
-                    />
-                    <TecFontsAwesome
-                        color="#CD3333"
-                        title="Manutenções"
-                        icon={faWrench}
-                    />
-                    <TecFontsAwesome
-                        color="#745CFF"
-                        title="E muito mais!"
-                        icon={faLightbulb}
-                        className="rgb"
-                    />
-                </div>
-            </div>
-
-            <div className={styles.portfolio} id="portfolio">
-                <h1 className={styles.title}>
-                    Nosso <span className="rgb">portfólio</span>
-                </h1>
-                <Swiper
-                    modules={[Navigation]}
-                    slidesPerView="auto"
-                    navigation
-                    pagination={{ clickable: true }}
-                    className={styles.swiper}
-                >
-                    {ITEMS.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <div className={styles.itemPortfolio}>
-                                <Image
-                                    src={item.image}
-                                    alt={item.description}
-                                    fill
-                                />
-                                <div className={styles.info}>
-                                    <div className={styles.infoContent}>
-                                        <p>{item.description}</p>
-                                        <a
-                                            className={styles.open}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            href={item.link}
-                                        >
-                                            Visualizar{" "}
-                                            <FontAwesomeIcon
-                                                icon={faArrowUpRightFromSquare}
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
-        </>
-    );
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperSlide>
+    </Swiper>
+  );
 }

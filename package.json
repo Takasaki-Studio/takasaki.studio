@@ -25,5 +25,8 @@
     "sass": "^1.58.3",
     "swiper": "^9.0.5",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.1"
   }
 }
