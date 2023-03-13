@@ -29,12 +29,14 @@ const ITEMS = [
     description:
       "MTA List é uma lista de servidores de Multi Theft Auto. Foi realizado o front-end e o back-end dessa aplicação, além de uma Dashboard.",
     image: "https://i.imgur.com/aTq2avE.png",
+    mobileImage: "https://i.imgur.com/MAEVAhy.png",
     link: "https://mtalist.com",
   },
   {
     description:
       "Página de captura para campanha da empresa Sonic Telecom de Goiânia/GO. Foi realizada a criação da página completa.",
     image: "https://i.imgur.com/V17J2RH.png",
+    mobileImage: "https://i.imgur.com/jRdz0Zs.png",
     link: "https://web.archive.org/web/20230311032145/https://lp2.sonictelecom.com.br/",
   },
 ] as const;
@@ -204,7 +206,18 @@ export default function Home() {
             {ITEMS.map((item, index) => (
               <swiper-slide class={styles.swiperSlide} key={index}>
                 <div className={styles.itemPortfolio}>
-                  <Image src={item.image} alt={item.description} fill />
+                  <Image
+                    className={styles.portfolioImage}
+                    src={item.image}
+                    alt={item.description}
+                    fill
+                  />
+                  <Image
+                    className={styles.portfolioImageMobile}
+                    src={item.mobileImage}
+                    alt={item.description}
+                    fill
+                  />
                   <div className={styles.info}>
                     <div className={styles.infoContent}>
                       <p>{item.description}</p>

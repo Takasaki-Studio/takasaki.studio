@@ -166,10 +166,6 @@
   @media (max-width: $breakpoint-lg) {
     --swiper-navigation-sides-offset: 5%;
     --swiper-navigation-size: 2rem;
-    font-size: 1.25rem;
-  }
-
-  @media (max-width: $breakpoint-md) {
     font-size: 0.875rem;
   }
 
@@ -181,63 +177,83 @@
       width: 100%;
     }
   }
+}
 
-  .itemPortfolio {
-    margin: 0 2.5%;
-    position: relative;
-    aspect-ratio: 480/241;
-    width: 60rem;
-    max-width: 100%;
-    border-radius: 1.25rem;
-    overflow: hidden;
+.itemPortfolio {
+  margin: 0 2.5%;
+  position: relative;
+  aspect-ratio: 480/241;
+  width: 60rem;
+  max-width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    object-fit: cover;
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    aspect-ratio: 375/667;
+    width: unset;
+    height: 80vh;
+    max-height: 50rem;
+  }
+}
+
+.info {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 21rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45.98%, #000000 83.6%);
+  align-items: flex-end;
+  display: flex;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-bottom: 1rem;
+  }
+}
+
+.infoContent {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  height: 3.5rem;
+
+  p {
+    display: block;
+    flex-grow: 1;
+    color: #fff;
+    margin: unset;
+  }
+
+  .open {
     display: flex;
-    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 0.6rem;
+    width: fit-content;
+    background-color: white;
+    padding: 0.5rem;
+    height: fit-content;
+    color: black;
+    text-decoration: none;
+  }
+}
 
-    img {
-      object-fit: cover;
-    }
+.portfolioImage {
+  @media (max-width: $breakpoint-lg) {
+    display: none;
+  }
+}
 
-    .info {
-      bottom: 0;
-      position: absolute;
-      width: 100%;
-      height: 21rem;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 45.98%,
-        #000000 83.6%
-      );
-      align-items: flex-end;
-      display: flex;
-
-      .infoContent {
-        display: flex;
-        width: 100%;
-        padding: 1rem;
-        height: 3.5rem;
-
-        p {
-          display: block;
-          flex-grow: 1;
-          color: #fff;
-          margin: unset;
-        }
-
-        .open {
-          display: flex;
-          gap: 0.5rem;
-          justify-content: center;
-          align-items: center;
-          white-space: nowrap;
-          border-radius: 0.6rem;
-          width: fit-content;
-          background-color: white;
-          padding: 0.5rem;
-          height: fit-content;
-          color: black;
-          text-decoration: none;
-        }
-      }
-    }
+.portfolioImageMobile {
+  display: none;
+  @media (max-width: $breakpoint-lg) {
+    display: block;
   }
 }
