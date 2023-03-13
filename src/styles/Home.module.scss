@@ -7,6 +7,17 @@ div.home {
   align-items: center;
 }
 
+.stars {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  font-size: 0.05vmax;
+}
+
 .logo {
   max-width: 90%;
   object-position: bottom;

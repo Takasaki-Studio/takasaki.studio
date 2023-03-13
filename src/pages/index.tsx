@@ -22,8 +22,9 @@ import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import SwiperInstance from "swiper";
 import { useWindowHeight } from "@/hooks/size";
+
+import starStyles from "@/styles/stars.module.scss";
 
 const ITEMS = [
   {
@@ -134,6 +135,11 @@ export default function Home() {
       ref={mainSwiperRef}
     >
       <SwiperSlide className={styles.home}>
+        <div className={styles.stars}>
+          <div className={starStyles.starsAnimation}></div>
+          <div className={starStyles.stars2Animation}></div>
+          <div className={starStyles.stars3Animation}></div>
+        </div>
         <Image
           className={styles.logo}
           src={Logo}

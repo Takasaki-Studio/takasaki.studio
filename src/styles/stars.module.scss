@@ -1,0 +1,83 @@
+// Code from https://github.com/Takasakiii/takasaki.dev/blob/4b343bb646663b811d22e8602507e052313eb639/assets/sass/extras/stars.scss
+
+$size: 2000;
+
+@function multiple-stars-box($n) {
+  $value: "#{random($size)}em #{random($size)}em #ffffff";
+  @for $i from 2 through $n {
+    $value: "#{$value}, #{random($size)}em #{random($size)}em #ffffff";
+  }
+  @return unquote($value);
+}
+
+$small: multiple-stars-box(700);
+$medium: multiple-stars-box(200);
+$big: multiple-stars-box(100);
+
+.starsAnimation {
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  box-shadow: $small;
+  animation: animate-stars 50s linear infinite;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: #{$size}em;
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    box-shadow: $small;
+  }
+}
+
+.stats2Animation {
+  width: 2em;
+  height: 2em;
+  background: transparent;
+  box-shadow: $medium;
+  border-radius: 50%;
+  animation: animate-stars 40s linear infinite;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: #{$size}em;
+    width: 2em;
+    height: 2em;
+    background: transparent;
+    box-shadow: $medium;
+    border-radius: 50%;
+  }
+}
+
+.stars3Animation {
+  width: 3em;
+  height: 3em;
+  background: transparent;
+  box-shadow: $big;
+  border-radius: 50%;
+  animation: animate-stars 30s linear infinite;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: #{$size}em;
+    width: 3em;
+    height: 3em;
+    background: transparent;
+    box-shadow: $big;
+    border-radius: 50%;
+  }
+}
+
+@keyframes animate-stars {
+  from {
+    transform: translateY(0em);
+  }
+
+  to {
+    transform: translateY(-#{$size}em);
+  }
+}
