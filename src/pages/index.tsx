@@ -190,11 +190,14 @@ export default function Home() {
             0: {
               slidesPerView: 2,
             },
-            992: {
+            600: {
               slidesPerView: 3,
             },
-            1200: {
+            992: {
               slidesPerView: 4,
+            },
+            1200: {
+              slidesPerView: 5,
             },
           }}
         >

@@ -35,6 +35,14 @@ div.home {
   @media (max-width: $breakpoint-sm) {
     font-size: 1.1rem;
   }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 0.9rem;
+  }
 }
 
 .links {
@@ -63,6 +71,10 @@ div.home {
     width: 90%;
     font-size: 1.3rem;
   }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 1.1rem;
+  }
 }
 
 .title {
@@ -80,6 +92,14 @@ div.home {
 
   @media (max-width: $breakpoint-sm) {
     font-size: 2.9rem;
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 1.8rem;
   }
 }
 
@@ -119,6 +139,10 @@ div.quemSomos {
       @media (max-width: $breakpoint-sm) {
         font-size: 1.4rem;
       }
+
+      @media (max-width: $breakpoint-xs) {
+        font-size: 1.1rem;
+      }
     }
   }
 
@@ -141,6 +165,7 @@ div.techSwiper {
   display: none;
 
   @media (max-width: $breakpoint-xl) {
+    overflow: visible;
     display: block;
     width: 100%;
     display: flex;
@@ -199,7 +224,7 @@ div.portfolio {
     object-fit: cover;
   }
 
-  @media (max-width: $breakpoint-lg) {
+  @media (orientation: portrait) {
     aspect-ratio: 375/667;
     width: unset;
     height: 80vh;
@@ -218,6 +243,10 @@ div.portfolio {
 
   @media (max-width: $breakpoint-lg) {
     padding-bottom: 1rem;
+  }
+
+  @media (orientation: portrait) {
+    padding-bottom: 0;
   }
 }
 
@@ -248,18 +277,31 @@ div.portfolio {
     color: black;
     text-decoration: none;
   }
+
+  @media (orientation: portrait) {
+    height: 6rem;
+    padding: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .open {
+      font-size: 0.8rem;
+      width: 95%;
+    }
+  }
 }
 
 .portfolioImage {
-  @media (max-width: $breakpoint-lg) {
+  @media (orientation: portrait) {
     display: none;
   }
 }
 
 .portfolioImageMobile {
-  display: none;
-  @media (max-width: $breakpoint-lg) {
-    display: block;
+  @media (orientation: landscape) {
+    display: none;
   }
 }
 
