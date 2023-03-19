@@ -1,0 +1,27 @@
+@import "@/styles/variables";
+
+.title {
+  font-size: 5rem;
+  margin-top: 0;
+  margin-bottom: unset;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: 4rem;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 2.9rem;
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 1.8rem;
+  }
+}

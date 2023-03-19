@@ -1,0 +1,17 @@
+@import "@/styles/variables";
+
+div.swiper {
+  display: none;
+
+  @media (max-width: $breakpoint-xl) {
+    overflow: visible;
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    & :global(.swiper-wrapper) {
+      align-items: center;
+    }
+  }
+}

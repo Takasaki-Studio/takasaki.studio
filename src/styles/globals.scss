@@ -8,23 +8,3 @@ html {
   background-attachment: fixed;
   color: white;
 }
-
-.rgb {
-  background: linear-gradient(90.25deg, #6247ff 0.38%, #ff60f1 80.85%);
-  background-clip: text;
-  color: transparent;
-  background-size: 400% 100%;
-  animation: 5s linear running infinite gradient;
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}

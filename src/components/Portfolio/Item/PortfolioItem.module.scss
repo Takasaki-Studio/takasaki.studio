@@ -1,0 +1,98 @@
+@import "@/styles/variables";
+
+.item {
+  margin: 0 2.5%;
+  position: relative;
+  aspect-ratio: 480/241;
+  width: 60rem;
+  max-width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    object-fit: cover;
+  }
+
+  @media (orientation: portrait) {
+    aspect-ratio: 375/667;
+    width: unset;
+    height: 80vh;
+    max-height: 50rem;
+  }
+}
+
+.info {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 21rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45.98%, #000000 83.6%);
+  align-items: flex-end;
+  display: flex;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-bottom: 1rem;
+  }
+
+  @media (orientation: portrait) {
+    padding-bottom: 0;
+  }
+}
+
+.infoContent {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  height: 3.5rem;
+
+  p {
+    display: block;
+    flex-grow: 1;
+    color: #fff;
+    margin: unset;
+  }
+
+  @media (orientation: portrait) {
+    height: 6rem;
+    padding: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}
+
+.button {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: 0.6rem;
+  background-color: white;
+  padding: 0.5rem;
+  height: fit-content;
+  color: black;
+  text-decoration: none;
+
+  @media (orientation: portrait) {
+    width: 100%;
+
+    font-size: 0.8rem;
+    width: 95%;
+  }
+}
+
+.image {
+  @media (orientation: portrait) {
+    display: none;
+  }
+}
+
+.mobileImage {
+  @media (orientation: landscape) {
+    display: none;
+  }
+}

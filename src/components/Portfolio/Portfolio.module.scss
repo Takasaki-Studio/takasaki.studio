@@ -1,0 +1,22 @@
+@import "@/styles/variables";
+
+.swiper {
+  --swiper-navigation-color: #fff;
+  width: 70rem;
+  max-width: 100%;
+
+  @media (max-width: $breakpoint-lg) {
+    --swiper-navigation-sides-offset: 5%;
+    --swiper-navigation-size: 2rem;
+    font-size: 0.875rem;
+  }
+}
+
+div.swiperSlide {
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-lg) {
+    width: 100%;
+  }
+}
