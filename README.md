@@ -1,5 +1,3 @@
-# takasaki.studio
-
 ![Takasaki Studio](/src/assets/logo.svg#gh-dark-mode-only)
 ![Takasaki Studio](/src/assets/logo-light.svg#gh-light-mode-only)
 
@@ -42,3 +40,7 @@ A checagem de código é feita usando o [ESLint](https://eslint.org). Para checa
 ```bash
 yarn lint
 ```
+
+## Licença
+
+O código está totalmente sob a licença [The Unlicense](https://unlicense.org). A marca e nome Takasaki Studio, suas logos e textos são de total propriedade da Takasaki Studio.
