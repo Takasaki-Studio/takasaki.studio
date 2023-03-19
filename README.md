@@ -1,10 +1,8 @@
 # takasaki.studio
 
-![Takasaki Studio](/src/assets/logo.svg)
+![Takasaki Studio](/src/assets/logo.svg#gh-dark-mode-only)
 
-## Website da empresa [Takasaki Studio](https://takasaki.studio), criado usando o [Next.js](https://nextjs.org) e SCSS.
-
-<hr>
+### Website da empresa [Takasaki Studio](https://takasaki.studio), criado usando o [Next.js](https://nextjs.org) e SCSS.
 
 ## Como iniciar:
 
