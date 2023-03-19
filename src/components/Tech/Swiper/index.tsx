@@ -1,3 +1,4 @@
+import { Autoplay } from "swiper";
 import { Swiper } from "swiper/react";
 import styles from "./TechSwiper.module.scss";
 
@@ -6,6 +7,7 @@ export type TechSwiperProps = React.PropsWithChildren;
 const TechSwiper: React.FC<TechSwiperProps> = (props) => {
   return (
     <Swiper
+      modules={[Autoplay]}
       className={styles.swiper}
       observer
       autoplay={{
