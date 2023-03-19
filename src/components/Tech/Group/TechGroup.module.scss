@@ -1,0 +1,15 @@
+@import "@/styles/variables";
+
+.group {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 100vw;
+
+  @media (max-width: $breakpoint-xl) {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+  }
+}

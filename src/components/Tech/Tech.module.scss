@@ -22,16 +22,14 @@
   }
 
   @media (max-width: $breakpoint-sm) {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
   }
-}
 
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.7rem;
-  width: 3.125rem;
-  height: 3.125rem;
-  border-radius: 50%;
+  @media (max-width: $breakpoint-xs) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 0.95rem;
+  }
 }

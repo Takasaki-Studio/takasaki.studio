@@ -1,0 +1,97 @@
+@import "@/styles/variables";
+
+div.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  font-size: 0.05vmax;
+}
+
+.logo {
+  max-width: 90%;
+  object-position: bottom;
+  object-fit: contain;
+}
+
+.slogan {
+  font-size: 2rem;
+  margin-top: 0.7rem;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: $breakpoint-xxs) {
+    font-size: 0.9rem;
+  }
+}
+
+div.solutions {
+  width: fit-content;
+  max-width: 95%;
+  margin: 0 auto;
+  gap: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: $breakpoint-xl) {
+    flex-direction: column;
+    gap: 0;
+    justify-content: space-evenly;
+  }
+}
+
+.about {
+  max-width: 50rem;
+  height: fit-content;
+}
+
+.text {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-size: 2.5rem;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 1.1rem;
+  }
+}
+
+div.portfolio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
