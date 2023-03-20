@@ -25,6 +25,7 @@ const PortfolioItem: React.FC<PortfolioItemProps> = (props) => {
         className={styles.mobileImage}
         src={props.mobileImage}
         alt="Imagem do projeto"
+        unoptimized
         fill
       />
       <div className={styles.info}>
